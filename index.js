@@ -1,10 +1,15 @@
-var fs = require("fs")
+#!/usr/bin/env node
+
+var fs = require('fs')
 var path = require("path")
-var text = fs.readFileSync("application.yml", "utf-8")
-console.log("原配置内容：\n" + text);
+console.log("使用方法：\n 进入application.yml所在目录，执行config key value");
+console.log("当前路径：\n " + process.cwd());
+
+var text = fs.readFileSync(process.cwd() + "/application.yml", "utf-8")
+console.log("原配置内容：\n " + text);
 
 var kv = process.argv.slice(2)
-console.log("输入参数：\n" + kv)
+console.log("输入参数：\n " + kv)
 
 var key = kv[0]
 var value = kv[1]
@@ -19,6 +24,6 @@ lines.forEach(function(line) {
         newLines += line + "\n"
     }
 });
-console.log("结果：\n" + newLines)
+console.log("结果：\n " + newLines)
 
 fs.writeFileSync("application.yml", newLines, "utf-8")
