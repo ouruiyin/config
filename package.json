@@ -1,7 +1,7 @@
 {
-    "name": "jfw-config-cli",
+    "name": "yml-config",
     "version": "1.0.6",
-    "description": "oryory i-q orylyq@qq.com",
+    "description": "npm adduser     oryory i-q orylyq@qq.com   npm publish",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,7 @@
         "url": "https://github.com/ouruiyin/config.git"
     },
     "keywords": [
-        "config",
+        "yml-config",
         "yml",
         "file"
     ],
