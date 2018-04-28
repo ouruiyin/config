@@ -1,3 +1,6 @@
 spring: 
   config: http://www.joinforwin.com
+    agentid: 34
+sie:
+  config:
     agentid: 0
