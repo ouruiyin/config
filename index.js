@@ -12,33 +12,39 @@ function configYml() {
 
     var key = kv[0]
     var value = kv[1]
+    var debug = kv[2]
     if (value == undefined) {
         value = ""
     }
 
     var text = fs.readFileSync(process.cwd() + "/application.yml", "utf-8")
-    var lines = text.split("\n")
-    var newLines = ""
-    var tempKey="";
-    lines.forEach(function(line) {
-    	if(line!=null && line.trim().length>0 && line.substring(0,1)!=" "){
-    		tempKey="";
-    	}
-    	var tempKeyValues=line.split(":");
-    	if(tempKeyValues.length>0){
-    		tempKey+=tempKeyValues[0].trim()+".";
-    	}
-    	console.log(tempKey);
-        if (tempKey==key+".") {
-            line = line.substring(0, line.indexOf(":") + 2) + value
-            console.log("已修改： " + line)
+    var lines = text.split("\n");
+    var keys = key.split(".");
+    var index = 0;
+    for (var i = 0; i < keys.length; i++) {
+        var tempKey = keys[i];
+        var count = 0;
+        for (var jj = index; jj < lines.length; jj++) {
+            count++;
+            var line = lines[jj];
+            if (line.trim() == "" || line.substring(0, 1) == "#") {
+                continue;
+            }
+            var lineKey = line.trim().split(":")[0].trim();
+            if (tempKey == lineKey) {
+                index += count;
+                break;
+            }
         }
-        if (line.trim().length > 0) {
-            newLines += line + "\n"
-        }
-    });
-    //console.log("结果：\n " + newLines)
+    }
+    var line = lines[index - 1];
+    lines[index - 1] = line.substring(0, line.indexOf(":") + 2) + value
+    console.log("已修改： " + line + " 为 " + lines[index - 1]);
 
+    var newLines = ""
+    for (var i = 0; i < lines.length; i++) {
+        newLines += lines[i] + "\n"
+    }
     fs.writeFileSync("application.yml", newLines, "utf-8")
 }
 
