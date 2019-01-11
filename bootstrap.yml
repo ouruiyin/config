@@ -1,41 +1,24 @@
 spring:
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@192.168.51.50:1521:hipdb
-    username: SIE
-    password: sie
-    max-idle: 10
-    max-wait: 10000
-  data:
-    elasticsearch:
-      cluster-name: sie
-      cluster-nodes: 192.168.51.50:9300
-      local: false
-      repositories:
-        enable: true
-  aop:
-    proxy-target-class:
-sie:
-  node:
-    id: abc
-    name: docker
-    ip: 192.168.51.47
-    port: 3000
-    status: dev
-    ha-status: join
-mybatis-plus:
-  mapper-locations: classpath:/mapper/*.xml
-  typeAliasesPackage: com.sie
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: false
-    call-setters-on-nulls: true
-    jdbc-type-for-null: VARCHAR
+  application:
+    name: sidecar
+  cloud:
+    nacos:
+      discovery:
+        server-addr: home.joinforwin.com:8848
+        cluster-name: DEFAULT
+        ip:
+        port:
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
 server:
-  port: 4000
-
-
-
-
-
+  port: 3000
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

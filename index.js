@@ -39,7 +39,7 @@ function configYml() {
         }
     }
     var line = lines[index - 1];
-    lines[index - 1] = line.substring(0, line.indexOf(":") + 2) + value
+    lines[index - 1] = line.substring(0, line.indexOf(":") + 1) + " " + value
     console.log("已修改： " + line + " 为 " + lines[index - 1]);
 
     var newLines = ""
