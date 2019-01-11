@@ -81,7 +81,7 @@ function configProperties() {
 var argv = process.argv.slice(2)
 if (argv[0].indexOf("--help") >= 0) {
     console.log("使用方法： ");
-    console.log("1、进入application.yml所在目录，执行config key value");
+    console.log("1、进入application.yml所在目录，执行config key value [application.yml]");
     console.log("2、进入x.properties所在目录，执行config x.properties key value");
     console.log("当前路径： " + process.cwd());
     return;
