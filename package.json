@@ -19,5 +19,6 @@
         "file"
     ],
     "author": "ou",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {}
 }

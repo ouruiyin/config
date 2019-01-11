@@ -33,11 +33,7 @@ mybatis-plus:
     call-setters-on-nulls: true
     jdbc-type-for-null: VARCHAR
 server:
-  port: 5000
-
-
-
-
+  port: 4000
 
 
 

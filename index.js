@@ -2,22 +2,26 @@
 
 var fs = require('fs')
 var path = require("path")
-//使用方法： 进入application.yml所在目录，执行config key value  进入x.properties所在目录，执行config x.properties key value
-//使用方法： 进入x.properties所在目录，执行config x.properties key value
+    //使用方法： 进入application.yml所在目录，执行config key value
+    //使用方法： 进入x.properties所在目录，执行config x.properties key value
 
 function configYml() {
     //console.log("当前路径： " + process.cwd());
     var kv = process.argv.slice(2)
-    //console.log("输入参数： " + kv)
+        //console.log("输入参数： " + kv)
 
     var key = kv[0]
     var value = kv[1]
-    var debug = kv[2]
+    var file = kv[2]
     if (value == undefined) {
         value = ""
     }
+    if (!file) {
+        file = "application.yml";
+    }
 
-    var text = fs.readFileSync(process.cwd() + "/application.yml", "utf-8")
+    var absFile = process.cwd() + "/" + file;
+    var text = fs.readFileSync(absFile, "utf-8")
     var lines = text.split("\n");
     var keys = key.split(".");
     var index = 0;
@@ -45,13 +49,13 @@ function configYml() {
     for (var i = 0; i < lines.length; i++) {
         newLines += lines[i] + "\n"
     }
-    fs.writeFileSync("application.yml", newLines, "utf-8")
+    fs.writeFileSync(absFile, newLines, "utf-8")
 }
 
 function configProperties() {
     //console.log("当前路径： " + process.cwd());
     var kv = process.argv.slice(2)
-    //console.log("输入参数： " + kv)
+        //console.log("输入参数： " + kv)
 
     var file = kv[0]
     var key = kv[1]
