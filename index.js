@@ -2,11 +2,8 @@
 
 var fs = require('fs')
 var path = require("path")
-    //使用方法： 进入application.yml所在目录，执行config key value
-    //使用方法： 进入x.properties所在目录，执行config x.properties key value
 
 function configYml() {
-    //console.log("当前路径： " + process.cwd());
     var kv = process.argv.slice(2)
         //console.log("输入参数： " + kv)
 
@@ -82,7 +79,13 @@ function configProperties() {
 }
 
 var argv = process.argv.slice(2)
-if (argv[0].indexOf(".properties") > 0) {
+if (argv[0].indexOf("--help") >= 0) {
+    console.log("使用方法： ");
+    console.log("1、进入application.yml所在目录，执行config key value");
+    console.log("2、进入x.properties所在目录，执行config x.properties key value");
+    console.log("当前路径： " + process.cwd());
+    return;
+} else if (argv[0].indexOf(".properties") >= 0) {
     configProperties();
 } else {
     configYml();

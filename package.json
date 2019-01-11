@@ -1,6 +1,6 @@
 {
     "name": "jfw-config-cli",
-    "version": "2.0.1",
+    "version": "2.0.3",
     "description": "npm adduser     oryory i-q orylyq@qq.com   npm publish",
     "main": "index.js",
     "scripts": {
